@@ -30,21 +30,17 @@ class Solution:
         # 选取比较基
         if len(intervals) > 1:
             right = len(intervals)-1
-            left = 1
+            left = 0
             base = random.randint(0, right)
             intervals[0], intervals[base] = intervals[base], intervals[0]
             while right > left:
-                while intervals[right][0] > intervals[0][0]:
+                while left < right and intervals[right][0] > intervals[0][0]:
                     right -= 1
-                while intervals[left][0] < intervals[0][0]:
-                    if left < right:
+                while left < right and intervals[left][0] <= intervals[0][0]:
                         left += 1
-                    else:
-                        break
                 if right > left:
                     intervals[left], intervals[right] = intervals[right], intervals[left]
-            if intervals[0] > intervals[right]:
-                intervals[0], intervals[right] = intervals[right], intervals[0]
+            intervals[0], intervals[right] = intervals[right], intervals[0]
             intervals[:right] = self.sort(intervals[:right])
             intervals[right+1:] = self.sort(intervals[right+1:])
         return intervals
@@ -57,13 +53,12 @@ class Solution:
                 merged.append(interval)
             else:
                 merged[-1][1] = max(merged[-1][1], interval[1])
-
         return merged
 
 S = Solution()
-intervals=[[2,3],[2,2],[3,3],[1,3],[5,7],[2,2],[4,6]]
-intervals = S.sort(intervals)
-print(intervals)
+intervals=[[1,3],[2,6],[8,10],[15,18]]
+for i in range(100):
+    print(S.sort([[4,5],[2,4],[4,6],[3,4],[0,0],[1,1],[3,5],[2,2]]))
 
 #%%
 intervals=[[3,1],[5,2],[1,1],[0,1],[4,1]]
