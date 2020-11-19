@@ -3,7 +3,7 @@
 @Time: 2020-11-19 22:32:21
 @File: 0014_Longest_Common_Prefix.py
 @Link: https://leetcode-cn.com/problems/longest-common-prefix/
-@Tag: Array
+@Tag: String
 '''
 class Solution:
     def longestCommonPrefix(self, strs) -> str:
