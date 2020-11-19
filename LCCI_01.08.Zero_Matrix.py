@@ -1,7 +1,7 @@
 '''
 @Author: Xinsheng Guo
 @Time: 2020-11-17 23:17
-@File: 01.07.Rotate_Matrix_LCCI.py
+@File: LCCI_01.08.Zero_Matrix.py
 @Link: https://leetcode-cn.com/problems/zero-matrix-lcci/
 @Tag: Array
 '''
