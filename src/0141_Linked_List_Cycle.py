@@ -1,9 +1,9 @@
 '''
 @Author: Xinsheng Guo
-@Time: 2020-11-19 23:28:26
+@Time: 2020-11-29 18:13:34
 @File: 0141_Linked_List_Cycle.py
 @Link: https://leetcode-cn.com/problems/linked-list-cycle/
-@Tag: String
+@Tag: Linked List; Two Pointers
 '''
 
 # Definition for singly-linked list.
