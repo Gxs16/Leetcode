@@ -14,11 +14,19 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 class Solution:
-    def cloneGraph(self, node: 'Node') -> 'Node':
+    def cloneGraph(self, node):
         node_new = deepcopy(node)
         stack = []
-        for i in node.neighbors:
-            stack.append(i)
+        node_set = {node}
         while stack:
             x = stack.pop()
+            _list = []
+            for i in x.neighbors:
+                a = deepcopy(i)
+                _list.append(a)
+                if not i in node_set:
+                    node_set.add(i)
+                    stack.append(i)
+            x.neighbors = _list
+        return node_new
             
