@@ -15,10 +15,9 @@ class TreeNode:
 
 class Solution:
     def levelOrder(self, root: TreeNode):
-        queue = []
         result = []
         if root:
-            queue.append([root])
+            queue = [[root]]
         else:
             return result
         while queue:
