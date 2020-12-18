@@ -15,58 +15,59 @@ class TreeNode:
         self.right = right
 # @lc code=start
 
-class Solution:
-    def findNode(self, root, val, father_dict):
-        if root:
-            if root.val == val:
-                return root
-            elif root.val > val and root.left:
-                father_dict[root.left] = (root, 'left')
-                return self.findNode(root.left, val, father_dict)
-            elif root.val < val and root.right:
-                father_dict[root.right] = (root, 'right')
-                return self.findNode(root.right, val, father_dict)
-        else:
-            return root
+class Solution:    
+    def findnext(self, root) -> int:
+        while root.left:
+            root = root.left
+        return root.val
     
-    def findnext(self, root):
-        if root.left:
-            return self.findnext(root.left)
-        else:
-            return root
+    def findprev(self, root) -> int:
+        while root.right:
+            root = root.right
+        return root.val
 
-    def deleteNode(self, root: TreeNode, key: int):
-        father_dict = dict()
-        target = self.findNode(root, key, father_dict)
-        if target:
-            if not target.left and not target.right:
-                if target is root:
-                    return None
-                setattr(father_dict[target][0], father_dict[target][1], None)
-            elif not target.left and target.right:
-                alpha = target.right.val
-                self.deleteNode(target, alpha)
-                target.val = alpha
-            elif target.left and not target.right:
-                alpha = target.left.val
-                self.deleteNode(target, alpha)
-                target.val = alpha
-            else:
-                target_next = self.findnext(target.right)
-                alpha = target_next.val
-                self.deleteNode(target, alpha)
-                target.val = alpha
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+        if root:
+            if root.val == key:
+                if not root.left and not root.right:
+                    root = None
+                elif not root.right and root.left:
+                    root.val = self.findprev(root.left)
+                    root.left = self.deleteNode(root.left, root.val)
+                else:
+                    root.val = self.findnext(root.right)
+                    root.right = self.deleteNode(root.right, root.val)
+            elif root.val > key and root.left:
+                root.left = self.deleteNode(root.left, key)
+            elif root.val < key and root.right:
+                root.right = self.deleteNode(root.right, key)
         return root
         
 # @lc code=end
 
 #%%
-a = TreeNode(2)
-b = TreeNode(4)
-c = TreeNode(7)
-d = TreeNode(3, a, b)
-e = TreeNode(6, None, c)
-f = TreeNode(5, d, e)
-Solution().deleteNode(f, 6)
+a1 = TreeNode(35)
+b1 = TreeNode(39)
+c1 = TreeNode(42)
+d1 = TreeNode(44)
+e1 = TreeNode(48)
+
+a2 = TreeNode(36, a1, b1)
+b2 = TreeNode(43, c1, d1)
+c2 = TreeNode(val=46, right=e1)
+
+a3 = TreeNode(val=34, right=a2)
+b3 = TreeNode(45, b2, c2)
+
+a4 = TreeNode(val=40, left=a3, right=b3)
+
+a5 = TreeNode(val=33, right=a4)
+
+a6 = TreeNode(val=2, right=a5)
+
+Solution().deleteNode(a6, 33)
 
 # %%
+a = TreeNode(1)
+b = TreeNode(val=2, left=a)
+Solution().deleteNode(b, 2)
