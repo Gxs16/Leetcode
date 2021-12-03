@@ -7,44 +7,39 @@
 #%%
 class Solution:
     def candy(self, ratings: list) -> int:
-        total = 0
-        ratings = [ratings[0]]+ratings+[ratings[-1]]
-        min_index = 0
-        for middle in range(1, len(ratings)-1):
-            left = middle-1
-            right = middle+1
-            if ratings[left] == ratings[middle] and ratings[middle] < ratings[right]:
-                min_index = middle
-            elif ratings[left] == ratings[middle] and ratings[right] == ratings[middle]:
-                if min_index == middle-1:
-                    total += 1
-                else:
-                    dis_left = max_index-min_index
-                    dis_right = middle-max_index
-                    min_dis = min(dis_left, dis_right)
-                    max_dis = max(dis_left, dis_right)
-                    total += (2+max_dis)*(1+max_dis)/2
-                    total += (1+min_dis)*min_dis/2
-                min_index = middle 
-            elif ratings[left] > ratings[middle] and ratings[right] >= ratings[middle]:
-                dis_left = max_index-min_index
-                dis_right = middle-max_index
-                min_dis = min(dis_left, dis_right)
-                max_dis = max(dis_left, dis_right)
-                total += (2+max_dis)*(1+max_dis)/2
-                total += (1+min_dis)*min_dis/2
-                min_index = middle
-            elif ratings[left] < ratings[middle] and ratings[middle] == ratings[right]:
-                max_index = middle
-            elif ratings[left] == ratings[middle] and ratings[middle] > ratings[right]:
-                max_index = middle
-            elif ratings[left] < ratings[middle] and ratings[middle] > ratings[right]:
-                max_index = middle
-        return int(total)
+        reward = [1]
+        count = 0
+        for i in range(1, len(ratings)):
+            if ratings[i] == ratings[i-1]:
+                if count > 0:
+                    if reward[-1] <= count:
+                        reward[-1] = count+1
+                    while count > 0:
+                        reward.append(count)
+                        count -= 1
+                reward.append(1)
+            elif ratings[i] < ratings[i-1]:
+                count += 1
+            else:
+                if count > 0:
+                    if reward[-1] <= count:
+                        reward[-1] = count+1
+                    while count > 0:
+                        reward.append(count)
+                        count -= 1
+                reward.append(reward[-1]+1)
+        if count > 0:
+            if reward[-1] <= count:
+                reward[-1] = count+1
+            while count > 0:
+                reward.append(count)
+                count -= 1
+        return sum(reward)
             
 # %%
-Solution().candy([1,0,2])
+Solution().candy([1,2,87,87,87,2,1])
 # %%
-a = [1,2,3,4,5,4,2,1]
-a.pop(0)
-a
+Solution().candy([29,51,87,87,72,12])
+# %%
+Solution().candy([1,2,3,5,4,3,2,1,4,3,2,1,3,2,1,1,2,3,4])
+# %%
