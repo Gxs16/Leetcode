@@ -14,16 +14,27 @@ class ListNode:
 
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        left = head
-        right = left
+        if k == 1 or (not head.next):
+            return head
+        left = ListNode(val=0, next=head)
+        start = left
+        right = head
+        is_break = False
         while right:
+            detect = right
+            for j in range(k-1):
+                if detect.next:
+                    detect = detect.next
+                else:
+                    is_break = True
+                    break
+            if is_break:
+                break
             for i in range(k-1):
                 temp = right.next
                 right.next = temp.next
-                temp.next = left
-                left = temp
-            head = left
-            left = right.next
-            right = left
-
-        return head
+                temp.next = left.next
+                left.next = temp
+            left = right
+            right = right.next
+        return start.next
