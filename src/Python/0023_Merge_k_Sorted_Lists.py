@@ -26,7 +26,7 @@ class Solution:
                 result.next = self.mergeTwoLists(l2.next, l1)
             return result
 
-    def mergeKLists(self, lists: List[ListNode]):
+    def mergeKLists(self, lists):
         if lists:
             while len(lists) > 1:
                 result = []
