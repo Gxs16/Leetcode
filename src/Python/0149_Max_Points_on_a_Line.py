@@ -28,7 +28,7 @@ class Solution:
                 if (points[i][0] - points[j][0]) == 0:
                     rate = float('inf')
                 else:
-                    rate = (points[i][1] - points[j][1]) * 1000000 / (points[i][0] - points[j][0]) 
+                    rate = (points[i][1] - points[j][1]) * 1000000 / (points[i][0] - points[j][0])
                 dic[rate] = dic.get(rate, 0) + 1
                 curMax = max(curMax, dic[rate])
             res = max(res, curMax+same+1)

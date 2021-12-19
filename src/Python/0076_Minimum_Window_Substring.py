@@ -63,4 +63,3 @@ class Solution:
         
         return s[result[0]+1: result[1]+1]
         
-        
