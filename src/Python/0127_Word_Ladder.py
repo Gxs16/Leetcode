@@ -8,50 +8,40 @@ class Solution:
                 return False
         if count == 1:
             return True
-        if count == 0:
+
+    def nextCandidate(self, endWord, used, candidate):
+        candidate_next = []
+        for cand in candidate:
+            for word in used:
+                if used[word] == 0:
+                    continue
+                if self.isTrans(cand, word):
+                    if endWord == word:
+                        return 2
+                    candidate_next.append(word)
+                    used[word] -= 1
+        if candidate_next:
+            path = self.nextCandidate(endWord, used, candidate_next)
+            if path:
+                return path+1
+            else:
+                return False
+        else:
             return False
 
-    def next_ladder(self, beginWord, endWord, wordList, used):
-        min_path = float('inf')
-        candidate = set()
-        _path = 0
-        for word in wordList:
-            if word in used:
-                continue
-            if self.isTrans(beginWord, word):
-                candidate.add(word)
-        if endWord in candidate:
-            return 1
-        for can in candidate:
-            used_next = used.copy()
-            used_next.add(can)
-            _path = (self.next_ladder(can, endWord, wordList, used_next))
-            if _path:
-                min_path = min(min_path, _path)
-        if _path == float('inf'):
-            return False
-        else:
-            return _path+1
-        
     def ladderLength(self, beginWord: str, endWord: str, wordList) -> int:
-        min_path = float('inf')
-        _path = 0
-        if endWord in wordList:
-            candidate = set()
-            for word in wordList:
-                if self.isTrans(beginWord, word):
-                    candidate.add(word)
-            if candidate:
-                if endWord in candidate:
+        candidate = []
+        used = {}
+        for word in wordList:
+            used[word] = 1
+            if self.isTrans(beginWord, word):
+                if endWord == word:
                     return 2
-                for can in candidate:
-                    used = set()
-                    _path = (self.next_ladder(can, endWord, wordList, used))
-                    if _path:
-                        min_path = min(min_path, _path)
-            if _path == float('inf'):
-                return False
-            else:
-                return _path+1
+                candidate.append(word)
+                used[word] -= 1
+        used[beginWord] = 0
+        path = self.nextCandidate(endWord, used, candidate)
+        if path:
+            return path+1
         else:
             return 0
