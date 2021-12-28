@@ -1,7 +1,7 @@
 '''
 @Author: Xinsheng Guo
 @Time: 2021年1月29日14:25:49
-@File: 0232_Implement_Stack_using_Queues.py
+@File: 0225_Implement_Stack_using_Queues.py
 @Link: https://leetcode-cn.com/problems/implement-stack-using-queues/
 @Tag: Stack; Design; Queue
 '''
