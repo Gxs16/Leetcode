@@ -18,3 +18,12 @@ class Solution:
         for i in range(len(prices)-1):
             result += max(0, prices[i+1]-prices[i])
         return result
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        have = float('-inf')
+        not_have = 0
+        for i in prices:
+            have = max(have, not_have-i)
+            not_have = max(have+i, not_have)
+        return not_have
