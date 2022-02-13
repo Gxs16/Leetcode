@@ -1,5 +1,5 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
+    def rob(self, nums) -> int:
         if len(nums) >= 4:
             dp_left = [0] * (len(nums)-1)
             for i in range(len(nums)-1):

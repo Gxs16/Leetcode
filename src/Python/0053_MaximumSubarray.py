@@ -1,5 +1,5 @@
 class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
+    def maxSubArray(self, nums) -> int:
         max_res = -10**9
         cur_res = 0
         for num in nums:

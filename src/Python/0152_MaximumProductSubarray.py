@@ -1,5 +1,5 @@
 class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
+    def maxProduct(self, nums) -> int:
         max_res = [1]*len(nums)
         min_res = [1]*len(nums)
         for i in range(len(nums)):
