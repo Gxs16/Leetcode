@@ -20,11 +20,16 @@ class Solution:
                     stack.append(i)
         return max_len
             
-
-        
-
-#%%
-a = [1]
-a.pop()
-a.pop()
-# %%
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        if s:
+            dp = [0]*len(s)
+            for i in range(1, len(s)):
+                char = s[i]
+                if char == ')':
+                    j = dp[i-1]
+                    if i-1-j >= 0 and s[i-1-j] == '(':
+                        dp[i] = 2+dp[i-1]+dp[i-2-j]
+            return max(dp)
+        else:
+            return 0
