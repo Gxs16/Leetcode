@@ -45,3 +45,32 @@ class Solution:
             return 0
         else:
             return self.cutPalindrome(s, used, candidate, g)+1
+
+class Solution:
+    def minCut(self, s: str) -> int:
+        dp = [[True]*(len(s)) for i in range(len(s))]
+        for i in range(len(s)):
+            for j in range(i-1, -1, -1):
+                if s[i] == s[j]:
+                    dp[j][i] = dp[j+1][i-1]
+                else:
+                    dp[j][i] = False
+        
+        stack = []
+        traverse = set()
+        for i in range(0, len(s)):
+            if dp[0][i]:
+                stack.append((0, i))
+                traverse.add(i)
+
+        while stack:
+            count, start = stack.pop(0)
+            if start == len(s)-1:
+                return count
+            else:
+                for i in range(len(s)-1, start, -1):
+                    if dp[start+1][i] and i not in traverse:
+                        stack.append((count+1, i))
+                        traverse.add(i)
+
+
