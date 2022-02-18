@@ -46,3 +46,13 @@ class Solution:
     def numSquares(self, n: int) -> int:
         return self.construct_queue({n}, 0)
 # %%
+class Solution:
+    def numSquares(self, n: int) -> int:
+        dp = [0]*(n+1)
+        for i in range(1, n+1):
+            up = int(sqrt(i))
+            res = i
+            for j in range(1, up+1):
+                res = min(res, dp[i-j**2])
+            dp[i] = res+1
+        return dp[-1]
