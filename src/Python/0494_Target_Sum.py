@@ -19,3 +19,21 @@ class Solution:
             for k in range(diff, j-1, -1):
                 F[k] += F[k-j]
         return F[-1]
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        sums = sum(nums)
+        if sums < abs(target):
+            return 0
+        dp = [[0]*(len(nums)+1) for i in range(sums*2+1)]
+        dp[0][0] = 1
+        for i in range(1, len(nums)+1):
+            num = nums[i-1]
+            for j in range(-sums, -sums+num):
+                dp[j][i] = dp[j+num][i-1]
+            for j in range(-sums+num, sums-num+1):
+                dp[j][i] = dp[j-num][i-1]+dp[j+num][i-1]
+            for j in range(sums-num+1, sums+1):
+                dp[j][i] = dp[j-num][i-1]
+            
+        return dp[target][-1]
