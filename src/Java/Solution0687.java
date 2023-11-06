@@ -1,19 +1,25 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
+
+
+class Solution0687 {
+    private static class TreeNode {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     public int longestUnivaluePath(TreeNode root) {
         if (root == null) return 0;
         return findPath(root)[0];
@@ -27,7 +33,7 @@ class Solution {
             leftRes = findPath(root.left);
             if (root.val == root.left.val) {
                 res[1] = Math.max(res[1], leftRes[1]);
-                res[0] += (leftRes[1]+1);
+                res[0] += (leftRes[1] + 1);
             }
         }
 
@@ -35,7 +41,7 @@ class Solution {
             rightRes = findPath(root.right);
             if (root.val == root.right.val) {
                 res[1] = Math.max(res[1], rightRes[1]);
-                res[0] += (rightRes[1]+1);
+                res[0] += (rightRes[1] + 1);
             }
         }
         res[1] += 1;

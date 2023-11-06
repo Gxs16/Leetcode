@@ -1,14 +1,12 @@
-class Solution {
+class Solution1598 {
     public int minOperations(String[] logs) {
         int step = 0;
         for (String operation : logs) {
             if ("../".equals(operation)) {
-                if (step == 0) {
-                    continue;
-                } else {
+                if (step != 0) {
                     step -= 1;
-                    continue;
                 }
+                continue;
             }
             if ("./".equals(operation)) {
                 continue;

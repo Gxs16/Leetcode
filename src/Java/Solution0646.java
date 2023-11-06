@@ -1,4 +1,6 @@
-class Solution {
+import java.util.Arrays;
+
+class Solution0646 {
     public int findLongestChain(int[][] pairs) {
         int curr = -1001, res = 0;
         Arrays.sort(pairs, (a, b) -> a[1] - b[1]);

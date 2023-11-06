@@ -1,4 +1,4 @@
-class Solution {
+class Solution0667 {
     public int[] constructArray(int n, int k) {
         int [] res = new int[n];
         for (int i = k+1; i < n; i++) {

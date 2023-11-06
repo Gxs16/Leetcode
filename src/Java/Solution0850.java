@@ -1,9 +1,15 @@
-class Solution {
-    int MOD = (int)1e9+7;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Solution0850 {
+    int MOD = (int) 1e9 + 7;
+
     public int rectangleArea(int[][] rs) {
         List<Integer> list = new ArrayList<>();
         for (int[] info : rs) {
-            list.add(info[0]); list.add(info[2]);
+            list.add(info[0]);
+            list.add(info[2]);
         }
         Collections.sort(list);
         long ans = 0;
@@ -14,14 +20,13 @@ class Solution {
             for (int[] info : rs) {
                 if (info[0] <= a && b <= info[2]) lines.add(new int[]{info[1], info[3]});
             }
-            Collections.sort(lines, (l1, l2)->{
-                return l1[0] != l2[0] ? l1[0] - l2[0] : l1[1] - l2[1];
-            });
+            lines.sort((l1, l2) -> l1[0] != l2[0] ? l1[0] - l2[0] : l1[1] - l2[1]);
             long tot = 0, l = -1, r = -1;
             for (int[] cur : lines) {
                 if (cur[0] > r) {
                     tot += r - l;
-                    l = cur[0]; r = cur[1];
+                    l = cur[0];
+                    r = cur[1];
                 } else if (cur[1] > r) {
                     r = cur[1];
                 }

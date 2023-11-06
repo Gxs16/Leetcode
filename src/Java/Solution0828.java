@@ -1,10 +1,15 @@
-class Solution {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+class Solution0828 {
     public int uniqueLetterString(String s) {
-        Map<Character, List<Integer>> index = new HashMap<Character, List<Integer>>();
+        Map<Character, List<Integer>> index = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (!index.containsKey(c)) {
-                index.put(c, new ArrayList<Integer>());
+                index.put(c, new ArrayList<>());
                 index.get(c).add(-1);
             }
             index.get(c).add(i);

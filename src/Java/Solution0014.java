@@ -1,4 +1,4 @@
-class Solution {
+class Solution0014 {
     public String longestCommonPrefix(String[] strs) {
         String result = "";
         boolean stop = false;

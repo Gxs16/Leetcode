@@ -1,16 +1,17 @@
-class Solution {
+import java.util.Arrays;
+import java.util.PriorityQueue;
+
+class Solution0857 {
     public double mincostToHireWorkers(int[] quality, int[] wage, int k) {
         int n = quality.length;
         Integer[] h = new Integer[n];
         for (int i = 0; i < n; i++) {
             h[i] = i;
         }
-        Arrays.sort(h, (a, b) -> {
-            return quality[b] * wage[a] - quality[a] * wage[b];
-        });
+        Arrays.sort(h, (a, b) -> quality[b] * wage[a] - quality[a] * wage[b]);
         double res = 1e9;
         double totalq = 0.0;
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b) -> b - a);
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
         for (int i = 0; i < k - 1; i++) {
             totalq += quality[h[i]];
             pq.offer(quality[h[i]]);

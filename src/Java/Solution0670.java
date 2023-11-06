@@ -1,4 +1,4 @@
-class Solution {
+class Solution0670 {
     public int maximumSwap(int num) {
         int [] digits = new int[8];
         int i = 0;

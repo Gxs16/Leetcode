@@ -1,4 +1,7 @@
-class Solution {
+import java.util.ArrayList;
+import java.util.HashSet;
+
+class Solution0672 {
     public int flipLights(int n, int presses) {
         int[] pressArray = new int[] {1<<n -1, 1<<n -1, 1<<n -1, 1<<n -1};
         for (int i = 0; i < n; i++) {

@@ -1,4 +1,4 @@
-class Solution {
+class Solution0013 {
     public int romanToInt(String s) {
         int[] dp = new int[s.length()+1];
         dp[0] = 0;

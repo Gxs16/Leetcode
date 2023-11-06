@@ -1,4 +1,6 @@
-class Solution {
+import java.util.HashMap;
+
+class Solution0020 {
     public boolean isValid(String s) {
         int[] stack = new int[s.length()];
         int j = -1;

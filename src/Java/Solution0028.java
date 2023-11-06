@@ -1,4 +1,4 @@
-class Solution {
+class Solution0028 {
     public int strStr(String haystack, String needle) {
         int n = haystack.length(), m = needle.length();
         for (int i = 0; i + m <= n; i++) {
