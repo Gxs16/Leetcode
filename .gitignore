@@ -1,2 +1,5 @@
 # vscode生成文件
 .vscode
+/.idea
+Leetcode.iml
+/out
