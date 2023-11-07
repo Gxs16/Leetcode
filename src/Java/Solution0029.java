@@ -8,10 +8,6 @@ public class Solution0029 {
                 return Integer.MAX_VALUE;
             }
         }
-        // 考虑除数为最小值的情况
-        if (divisor == Integer.MIN_VALUE) {
-            return dividend == Integer.MIN_VALUE ? 1 : 0;
-        }
         boolean reverse = false;
         if (dividend > 0) {
             dividend = -dividend;
@@ -37,8 +33,7 @@ public class Solution0029 {
 
     public static void main(String[] args) {
         Solution0029 solution = new Solution0029();
-//        System.out.println(multiply(157, (int) Math.pow(2, 15)));
         System.out.println(solution.divide(1100540749, -1090366779));
-//        System.out.println(-5<<1);
+        System.out.println(1);
     }
 }
