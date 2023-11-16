@@ -20,10 +20,6 @@ class Solution0020 {
                 }
             }
         }
-        if (j==-1){
-            return true;
-        }else{
-            return false;
-        }
+        return j == -1;
     }
 }
